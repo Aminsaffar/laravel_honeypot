@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth_honey;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
 class ResetPasswordController extends Controller
@@ -34,6 +35,8 @@ class ResetPasswordController extends Controller
      */
     public function __construct()
     {
+        User::log_introderuser();
         $this->middleware('guest');
     }
+
 }

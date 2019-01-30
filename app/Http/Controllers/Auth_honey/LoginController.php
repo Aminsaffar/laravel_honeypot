@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Auth_honey;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class LoginController extends Controller
 {
@@ -27,6 +30,7 @@ class LoginController extends Controller
      */
     protected $redirectTo = '/home';
 
+
     /**
      * Create a new controller instance.
      *
@@ -34,6 +38,12 @@ class LoginController extends Controller
      */
     public function __construct()
     {
+        User::log_introderuser();
         $this->middleware('guest')->except('logout');
+    }
+    public function login(Request $request)
+    {
+        return $this->sendFailedLoginResponse($request);
+        //return Redirect::back()->with('These credentials do not match our records.');
     }
 }

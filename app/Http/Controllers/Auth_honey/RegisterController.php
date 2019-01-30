@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth_honey;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -37,6 +38,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
+        User::log_introderuser();
         $this->middleware('guest');
     }
 
@@ -55,6 +57,10 @@ class RegisterController extends Controller
         ]);
     }
 
+    protected function register(){
+        return Redirect::back();
+    }
+
     /**
      * Create a new user instance after a valid registration.
      *
@@ -63,10 +69,13 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
+        /*
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+        */
     }
 }

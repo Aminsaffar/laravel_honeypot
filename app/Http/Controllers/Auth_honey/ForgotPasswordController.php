@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Auth_honey;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+use Illuminate\Http\Request;
 
 class ForgotPasswordController extends Controller
 {
@@ -27,6 +29,12 @@ class ForgotPasswordController extends Controller
      */
     public function __construct()
     {
+        User::log_introderuser();
         $this->middleware('guest');
     }
+    public function sendResetLinkEmail(Request $request)
+    {
+        return $this->sendResetLinkFailedResponse($request, 'passwords.user');
+    }
+
 }
