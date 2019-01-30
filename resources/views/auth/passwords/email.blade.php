@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    <form method="POST" action="{{ route('password.email') }}">
+                    <form method="POST" action="{{ Route::current()->getName() == 'password.email'? route('password.email') : route('honey_password.email')}}">
                         @csrf
 
                         <div class="form-group row">
